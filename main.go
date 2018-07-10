@@ -8,12 +8,16 @@ import (
 type stack []int
 
 func main() {
+
 	var value stack
 	fmt.Println(value)
+
 	value = value.push(1)
 	fmt.Println(value)
+
 	value, popval, err := value.pop()
 	fmt.Println(value, popval, err)
+
 	value, popval, err = value.pop()
 	fmt.Println(value, popval, err)
 }

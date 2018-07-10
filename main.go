@@ -31,12 +31,13 @@ func calcOnlyPrime(i ...int) (int, float32) {
 }
 
 func checkPrime(num int) bool {
-	flag := true
+	if num <= 1 {
+		return false
+	}
 	for i := 2; i <= num/2; i++ {
 		if num%i == 0 {
-			flag = false
-			break
+			return false
 		}
 	}
-	return flag
+	return true
 }

@@ -1,43 +1,30 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 )
 
-func init() {
-	println("init func()")
-}
+type stack []int
 
 func main() {
-	number := []int{}
-	for i := 1; i <= 100; i++ {
-		number = append(number, i)
-	}
-	sum, avg := calcOnlyPrime(number...)
-	fmt.Printf("sum = %d, avg = %f\n", sum, avg)
+	var value stack
+	fmt.Println(value)
+	value = value.push(1)
+	fmt.Println(value)
+	value, popval, err := value.pop()
+	fmt.Println(value, popval, err)
+	value, popval, err = value.pop()
+	fmt.Println(value, popval, err)
 }
 
-func calcOnlyPrime(i ...int) (int, float32) {
-	sum := 0
-	count := 0
-	for _, num := range i {
-		if checkPrime(num) {
-			sum += num
-			count++
-		}
-	}
-	avg := float32(sum) / float32(count)
-	return sum, avg
+func (s stack) push(a int) stack {
+	return append(s, a)
 }
 
-func checkPrime(num int) bool {
-	if num <= 1 {
-		return false
+func (s stack) pop() (stack, int, error) {
+	if len(s) == 0 {
+		return nil, -999, errors.New("can't pop stack")
 	}
-	for i := 2; i <= num/2; i++ {
-		if num%i == 0 {
-			return false
-		}
-	}
-	return true
+	return s[:len(s)-1], s[len(s)-1:][0], nil
 }

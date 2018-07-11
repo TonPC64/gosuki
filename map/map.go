@@ -7,7 +7,9 @@ import (
 
 func main() {
 	wc := NewWordCount()
-	wc = wc.AddWord("I am")
+	wc = wc.AddWord("I am am am")
+	wc = wc.AddWord("I am am am")
+
 	wc.PrintAll()
 }
 
@@ -25,8 +27,8 @@ func NewWordCount() WordsCount {
 func (wc WordsCount) AddWord(s string) WordsCount {
 	for _, str := range strings.Fields(s) {
 		wc[str] = WordCount{
-			Count:  0,
-			Length: 0,
+			Count:  wc[str].Count + 1,
+			Length: len(str),
 		}
 	}
 	return wc

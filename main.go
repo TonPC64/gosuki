@@ -1,7 +1,32 @@
 package main
 
-func main() {
+import (
+	"math"
+)
 
+func main() {}
+
+type Rectangle struct {
+	Width  float64
+	Height float64
 }
 
-// 1 2 fizz 4 buzz ... 14 fizzbuzz
+type Circle struct {
+	Radius float64
+}
+
+func (r Rectangle) Perimeter() float64 {
+	return 2 * (r.Width + r.Height)
+}
+
+func (r Rectangle) Area() float64 {
+	return (r.Width * r.Height)
+}
+
+func (c Circle) Perimeter() float64 {
+	return 2 * math.Pi * c.Radius
+}
+
+func (c Circle) Area() float64 {
+	return math.Pi * (c.Radius * c.Radius)
+}
